@@ -7,8 +7,8 @@
     <ProjectGuid>{7048545E-3A2D-477A-82AD-17A5D3A9864B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Knowledgebase_Sync</RootNamespace>
-    <AssemblyName>Knowledgebase-Sync</AssemblyName>
+    <RootNamespace>KnowledgebaseSync</RootNamespace>
+    <AssemblyName>KnowledgebaseSync</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,8 +44,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="KnowledgebaseSync.cs" />
+    <Compile Include="Models\Context.cs" />
+    <Compile Include="Models\KnowledgebaseDownloadDTO.cs" />
+    <Compile Include="Models\MetadataDTO.cs" />
+    <Compile Include="Models\PortalDbRecordDTO.cs" />
+    <Compile Include="Models\PortalDbRecords.cs" />
+    <Compile Include="Models\PromptDTO.cs" />
+    <Compile Include="Models\QnADocumentsDTO.cs" />
+    <Compile Include="Models\QnADTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

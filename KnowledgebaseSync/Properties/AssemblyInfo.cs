@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Knowledgebase-Sync")]
+[assembly: AssemblyTitle("KnowledgebaseSync")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Willis Towers Watson")]
-[assembly: AssemblyProduct("Knowledgebase-Sync")]
+[assembly: AssemblyProduct("KnowledgebaseSync")]
 [assembly: AssemblyCopyright("Copyright © Willis Towers Watson 2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
