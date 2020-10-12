@@ -1,4 +1,7 @@
-﻿namespace KnowledgebaseSync.Models
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
+
+namespace KnowledgebaseSync.Models
 {
     /// <summary>
     ///     List of QnADTO
@@ -6,8 +9,9 @@
     public class QnADocumentsDTO
     {
         /// <summary>
-        ///     List of answers.
+        ///     List of QnaDTO.
         /// </summary>
-        public QnADTO[] QnaDTO { get; set; }
+        [JsonProperty("qnaDocuments")]
+        public List<QnADTO> QnaDTO { get; set; }
     }
 }
