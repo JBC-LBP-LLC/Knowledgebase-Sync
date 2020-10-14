@@ -11,7 +11,7 @@ namespace KnowledgebaseSync
         {
             IEnumerable<PortalDbRecordDTO> portalDbRecords = JsonConvert.DeserializeObject<IEnumerable<PortalDbRecordDTO>>(portalDb);
             QnADocumentsDTO qnaDocumentsDTO = JsonConvert.DeserializeObject<QnADocumentsDTO>(knowledgebase);
-
+            
             List<QnADTO> qnaDTOs = new List<QnADTO>();
             LoadQnaDocuments(qnaDocumentsDTO, qnaDTOs);
 
@@ -22,33 +22,45 @@ namespace KnowledgebaseSync
             LoadMetadata(qnaDTOs, metadataDTO);
 
             KnowledgebaseUpdateDTO knowledgebaseUpdateDTO = new KnowledgebaseUpdateDTO();
-            LoadKbUpdate(portalDbRecordsDTO, metadataDTO, knowledgebaseUpdateDTO);
+            LoadKbUpdate(qnaDocumentsDTO, portalDbRecordsDTO, metadataDTO, knowledgebaseUpdateDTO);
 
             var knowledgebaseUpdateObject = JsonConvert.SerializeObject(knowledgebaseUpdateDTO);
 
             return knowledgebaseUpdateObject;
         }
 
-        private static void LoadKbUpdate(List<PortalDbRecordDTO> portalDbRecordsDTO, List<MetadataDTO> metadataDTO, KnowledgebaseUpdateDTO knowledgebaseUpdateDTO)
+        private static void LoadKbUpdate(QnADocumentsDTO qnaDocumentsDTO, List<PortalDbRecordDTO> portalDbRecordsDTO, List<MetadataDTO> metadataDTO, KnowledgebaseUpdateDTO knowledgebaseUpdateDTO)
         {
-            foreach (var metadataItem in metadataDTO)
-            {
-                if (metadataItem.Name == "faqid")
-                {
-                    foreach (var dbRecord in portalDbRecordsDTO)
-                    {
-                        if (metadataItem.Value == dbRecord.FaqId.ToString())
-                        {
-                            string answer = dbRecord.FaqAnswer;
-                            ContextDTO contextDTO = new ContextDTO();
-                            //contextDTO.IsContextOnly = doc
-                            //Upd
-                            //knowledgebaseUpdateDTO.update.name = $"QA-bcnocg-{dbRecord.PortalId}";
-                            //knowledgebaseUpdateDTO.update.qnaList = ;
-                        }
-                    }
-                }
-            }
+            var replaceKbDTO = from p in portalDbRecordsDTO
+                               join m in metadataDTO
+                               on p.FaqId.ToString() equals m.Value
+                               join q in qnaDocumentsDTO.QnaDTO
+                               on m.Id equals q.Id
+                               select new 
+
+            var currentKbDocumentsFaqIds = from m in metadataDTO
+                                   where m.Name == "faqid"
+                                   select new
+                                   {
+                                       FaqId = m.Value
+                                   };
+
+            var updateQuestions = from p in portalDbRecordsDTO
+                                  join m in metadataDTO
+                                  on p.FaqId.ToString() equals m.Value
+                                  join q in qnaDocumentsDTO.QnaDTO
+                                  on m.Id equals q.Id
+                                  select p.FaqQuestion;
+
+            var updateAnswers = from p in portalDbRecordsDTO
+                                join m in metadataDTO
+                                on p.FaqId.ToString() equals m.Value
+                                join q in qnaDocumentsDTO.QnaDTO
+                                on m.Id equals q.Id
+                                select p.FaqAnswer;
+
+
+            var wow = true;
         }
 
         private static void LoadMetadata(List<QnADTO> qnaDTOs, List<MetadataDTO> metadataDTO)
@@ -63,6 +75,7 @@ namespace KnowledgebaseSync
                 {
                     MetadataDTO metadataRecord = new MetadataDTO
                     {
+                        Id = metadata.Id,
                         Name = metadataFields[i].Name,
                         Value = metadataFields[i].Value
                     };
