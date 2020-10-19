@@ -53,10 +53,17 @@ namespace KnowledgebaseSync
                                 on m.Id equals q.Id
                                 select p.FaqAnswer;
 
-            var updateUrls = from p in portalDbRecordsDTO
-                             join m in metadataDTO
-                             on m.Id equals q.Id
-                             select m.
+            var updateContexts = from p in portalDbRecordsDTO
+                                 join m in metadataDTO
+                                 on p.FaqId.ToString() equals m.Value
+                                 join q in qnaDocumentsDTO.QnaDTO
+                                 on m.Id equals q.Id
+                                 select q.Context;
+
+            //var updateUrls = from p in portalDbRecordsDTO
+            //                 join m in metadataDTO
+            //                 on m.Id equals q.Id
+            //                 select m.
 
             var wow = true;
         }
