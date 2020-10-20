@@ -9,7 +9,7 @@ namespace KnowledgebaseSync.Models
         public Update update { get; set; }
     }
 
-    public class QnaList
+    public class AddQnaList
     {
         public int id { get; set; }
         public string answer { get; set; }
@@ -26,7 +26,7 @@ namespace KnowledgebaseSync.Models
 
     public class Add
     {
-        public List<QnaList> qnaList { get; set; }
+        public List<AddQnaList> qnaList { get; set; }
         public List<string> urls { get; set; }
         public List<File> files { get; set; }
     }
@@ -73,7 +73,7 @@ namespace KnowledgebaseSync.Models
         public string source { get; set; }
         public List<string> questions { get; set; }
         public List<object> metadata { get; set; }
-        public Context2 context { get; set; }
+        public ContextDTO context { get; set; }
     }
 
     public class PromptsToAdd
@@ -91,7 +91,7 @@ namespace KnowledgebaseSync.Models
         public List<int> promptsToDelete { get; set; }
     }
 
-    public class QnaList2
+    public class UpdateQnaList
     {
         public int id { get; set; }
         public string answer { get; set; }
@@ -104,6 +104,7 @@ namespace KnowledgebaseSync.Models
     public class Update
     {
         public string name { get; set; }
-        public List<QnaList2> qnaList { get; set; }
+        public List<Qna> qnaList { get; set; }
+        public List<string> urls { get; set; }
     }
 }

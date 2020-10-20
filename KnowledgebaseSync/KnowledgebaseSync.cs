@@ -21,6 +21,20 @@ namespace KnowledgebaseSync
             List<MetadataDTO> metadataDTO = new List<MetadataDTO>();
             LoadMetadata(qnaDTOs, metadataDTO);
 
+            Update updates = new Update
+            {
+                name = "Troy",
+                qnaList = new List<Qna>(),
+                urls = new List<string>()
+            };
+            LoadUpdates(metadataDTO, qnaDocumentsDTO.QnaDTO, portalDbRecordsDTO, updates);
+
+            Delete deletes = new Delete
+            {
+                ids = new List<int>()
+            };
+            LoadDeletes(metadataDTO, portalDbRecordsDTO, deletes);
+
             KnowledgebaseUpdateDTO knowledgebaseUpdateDTO = new KnowledgebaseUpdateDTO();
             LoadKbUpdate(qnaDocumentsDTO, portalDbRecordsDTO, metadataDTO, knowledgebaseUpdateDTO);
 
@@ -38,6 +52,16 @@ namespace KnowledgebaseSync
                                        KbId = m.Id,
                                        FaqId = m.Value
                                    };
+
+            var addIds = from q in portalDbRecordsDTO
+                         join c in currentKbDocumentsFaqIds
+                         on q.FaqId.ToString() equals c.FaqId
+                         select q.FaqId;
+
+            var deleteIds = from c in currentKbDocumentsFaqIds
+                            join q in portalDbRecordsDTO
+                            on c.FaqId !equals q.FaqId.ToString()
+                            select c.FaqId;
 
             var updateQuestions = from p in portalDbRecordsDTO
                                   join m in metadataDTO
@@ -59,6 +83,21 @@ namespace KnowledgebaseSync
                                  join q in qnaDocumentsDTO.QnaDTO
                                  on m.Id equals q.Id
                                  select q.Context;
+
+            var addQuestions = from p in portalDbRecordsDTO
+                                  join m in metadataDTO
+                                  on p.FaqId.ToString() equals m.Value
+                                  join q in qnaDocumentsDTO.QnaDTO
+                                  on m.Id !equals q.Id
+                                  select p.FaqQuestion;
+
+            var deleteQuestions = from p in portalDbRecordsDTO
+                               join m in metadataDTO
+                               on p.FaqId.ToString() equals m.Value
+                               join q in qnaDocumentsDTO.QnaDTO
+                               on m.Id equals q.Id
+                               select p.FaqQuestion;
+
 
             //var updateUrls = from p in portalDbRecordsDTO
             //                 join m in metadataDTO
@@ -86,8 +125,8 @@ namespace KnowledgebaseSync
                     };
 
                     metadataDTO.Add(metadataRecord);
-                }
-            }
+                };
+            };
         }
 
         private static void LoadQnaDocuments(QnADocumentsDTO qnaDocumentsDTO, List<QnADTO> qnaDTOs)
@@ -105,7 +144,111 @@ namespace KnowledgebaseSync
                 };
 
                 qnaDTOs.Add(qnaDTO);
+            };
+        }
+
+        private static void LoadUpdates(List<MetadataDTO> metadataDTO, List<QnADTO> qnaDTOs, List<PortalDbRecordDTO> portalDbRecordsDTO, Update update)
+        {
+            List<Qna> qnas = new List<Qna>();
+            var currentKbDocumentsFaqIds = from m in metadataDTO
+                                           where m.Name == "faqid"
+                                           select new
+                                           {
+                                               KbId = m.Id,
+                                               FaqId = m.Value
+                                           };
+
+            foreach (var document in currentKbDocumentsFaqIds)
+            {
+                var updateQuestions = from p in portalDbRecordsDTO
+                                      join m in metadataDTO
+                                      on p.FaqId.ToString() equals m.Value
+                                      join q in qnaDTOs
+                                      on m.Id equals q.Id
+                                      where p.FaqId.ToString() == document.FaqId
+                                      select p.FaqQuestion;
+
+                var updateAnswer = from p in portalDbRecordsDTO
+                                   join m in metadataDTO
+                                   on p.FaqId.ToString() equals m.Value
+                                   join q in qnaDTOs
+                                   on m.Id equals q.Id
+                                   where p.FaqId.ToString() == document.FaqId
+                                   select p.FaqAnswer;
+
+                var updateContext = from p in portalDbRecordsDTO
+                                    join m in metadataDTO
+                                    on p.FaqId.ToString() equals m.Value
+                                    join q in qnaDTOs
+                                    on m.Id equals q.Id
+                                    where p.FaqId.ToString() == document.FaqId
+                                    select q.Context;
+
+                var updateMetadata = from p in portalDbRecordsDTO
+                                    join m in metadataDTO
+                                    on p.FaqId.ToString() equals m.Value
+                                    join q in qnaDTOs
+                                    on m.Id equals q.Id
+                                    where p.FaqId.ToString() == document.FaqId
+                                    select q.Metadata;
+
+                Qna qnaDTO = new Qna
+                {
+                    questions = new List<string>()
+                };
+                qnaDTO.questions = updateQuestions.ToList();
+                qnaDTO.answer = updateAnswer.FirstOrDefault();
+                qnaDTO.context = updateContext.FirstOrDefault();
+                //qnaDTO.metadata = updateMetadata.FirstOrDefault();
+                qnaDTO.id = document.KbId;
+                qnaDTO.source = "";
+
+                qnas.Add(qnaDTO);
             }
+
+            update.name = "Troy";
+            update.qnaList = qnas;
+        }
+
+        private static void LoadDeletes(List<MetadataDTO> metadataDTO, List<PortalDbRecordDTO> portalDbRecordsDTO, Delete delete)
+        {
+            List<int> ids = new List<int>();
+            var faqIds = metadataDTO.Select(f => f.Value).ToList();
+
+            foreach (var portalRecords in portalDbRecordsDTO)
+            {
+                if (!faqIds.Contains(portalRecords.FaqId.ToString()))
+                {
+                    delete.ids.Add(portalRecords.FaqId);
+                };
+            };
+        }
+
+        private static void LoadAdds(List<MetadataDTO> metadataDTO, List<PortalDbRecordDTO> portalDbRecordsDTO, Add add)
+        {
+            List<QnADTO> qnaDTOs = new List<QnADTO>();
+
+            //foreach (var portalRecords in portalDbRecordsDTO)
+            //{
+            //    var faqIds = metadataDTO.Select(f => f.Value).ToList();
+
+            //    if (!faqIds.Contains(portalRecords.FaqId.ToString()))
+            //    {
+            //        foreach (var item in portalRecords.c)
+            //        {
+
+            //        }
+
+            //        QnADTO qnaDTO = new QnADTO
+            //        {
+            //            Answer = portalRecords.FaqAnswer,
+            //            Id = portalRecords.FaqId,
+
+            //        };
+
+            //        qnaDTOs.Add(qnaDTO);
+            //    }
+            //}
         }
 
         private static void LoadPortalDbRecords(IEnumerable<PortalDbRecordDTO> portalDbRecords, List<PortalDbRecordDTO> portalDbRecordsDTO)
