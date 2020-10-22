@@ -26,28 +26,33 @@ namespace KnowledgebaseSync
             List<MetadataDTO> metadataDTOs = new List<MetadataDTO>();
             LoadMetadata(qnaDocumentsDTO.QnaDTO, metadataDTOs);
 
-            Delete delete = new Delete();
-
             List<QnADTO> addQnADTOs = new List<QnADTO>();
-            LoadAddQnADTOs(portalDbRecords, qnaDocumentsDTO, addQnADTOs, delete);
+            LoadAddQnADTOs(portalDbRecords, qnaDocumentsDTO, addQnADTOs);
 
             List<UpdateQnaDTO> updateQnaDTOs = new List<UpdateQnaDTO>();
             LoadUpdateQnADTOs(portalDbRecords, qnaDocumentsDTO, updateQnaDTOs);
 
-            List<string> urls = new List<string>();
+            var metadatafaqIds = metadataDTOs.Where(m => m.Name == "faqid");
+            var deletes = metadatafaqIds.Where(m => !portalDbRecords.Any(p => p.FaqId.ToString() == m.Value));
 
             Add add = new Add
             {
                 Files = fileDTOs,
                 QnaList = addQnADTOs,
-                Urls = urls
+                Urls = new List<string>()
             };
 
             Update update = new Update
             {
                 Name = "Troy",
                 QnaList = updateQnaDTOs,
-                Urls = urls
+                Urls = new List<string>()
+            };
+
+            Delete delete = new Delete
+            {
+                Ids = deletes.Select(d => int.Parse(d.Value)).ToList(),
+                Sources = new List<string>()
             };
 
             UpdateKbOperationDTO updateKbOperationDTO = new UpdateKbOperationDTO
@@ -56,14 +61,17 @@ namespace KnowledgebaseSync
                 DefaultAnswerUsedForExtraction = "",
                 Delete = delete,
                 EnableHierarchicalExtraction = false,
-                Update = null 
+                Update = update
             };
 
             string JsonObjectUpdateKbOperationDTO = JsonConvert.SerializeObject(updateKbOperationDTO);
             return JsonObjectUpdateKbOperationDTO;
         }
 
-        private static void LoadUpdateQnADTOs(IEnumerable<PortalDbRecordDTO> portalDbRecords, QnADocumentsDTO qnaDocumentsDTO, List<UpdateQnaDTO> updateQnADTOs)
+        private static void LoadUpdateQnADTOs(
+            IEnumerable<PortalDbRecordDTO> portalDbRecords,
+            QnADocumentsDTO qnaDocumentsDTO,
+            List<UpdateQnaDTO> updateQnADTOs)
         {
             foreach (var portalDbRecord in portalDbRecords)
             {
@@ -75,13 +83,13 @@ namespace KnowledgebaseSync
                 foreach (var qnaDTO in qnaDocumentsDTO.QnaDTO)
                 {
                     var metadataFaqId = from m in qnaDTO.Metadata
-                                   where m.Name == "faqid"
-                                   select m.Value;
+                                        where m.Name == "faqid"
+                                        select m.Value;
 
                     if (metadataFaqId.FirstOrDefault() != null)
                     {
                         string faqid = metadataFaqId.FirstOrDefault().ToString();
-                        
+
                         if (portalDbRecord.FaqId.ToString() == faqid)
                         {
                             questions.Add.Add(portalDbRecord.FaqQuestion);
@@ -115,13 +123,10 @@ namespace KnowledgebaseSync
         }
 
         private static void LoadAddQnADTOs(
-            IEnumerable<PortalDbRecordDTO> portalDbRecords, 
-            QnADocumentsDTO qnaDocumentsDTO, 
-            List<QnADTO> qnADTOs,
-            Delete delete)
+            IEnumerable<PortalDbRecordDTO> portalDbRecords,
+            QnADocumentsDTO qnaDocumentsDTO,
+            List<QnADTO> qnADTOs)
         {
-            delete.Ids = new List<int>();
-
             foreach (var portalDbRecord in portalDbRecords)
             {
                 List<string> questions = new List<string>();
@@ -131,39 +136,24 @@ namespace KnowledgebaseSync
                                    where m.Name == "faqid"
                                    select m.Value;
 
-                    if (metadata.FirstOrDefault() != null)
+                    if (metadata.FirstOrDefault() == null)
                     {
-                        string faqid = metadata.FirstOrDefault().ToString();
-                        if (portalDbRecord.FaqId.ToString() == faqid)
+                        questions.Add(portalDbRecord.FaqQuestion);
+                        QnADTO qnADTO = new QnADTO
                         {
-                            questions.Add(portalDbRecord.FaqQuestion);
-                            QnADTO qnADTO = new QnADTO
-                            {
-                                Answer = portalDbRecord.FaqAnswer,
-                                Context = qnaDTO.Context,
-                                Id = qnaDTO.Id,
-                                Metadata = qnaDTO.Metadata,
-                                Questions = questions.ToList(),
-                                Source = qnaDTO.Source
-                            };
+                            Answer = portalDbRecord.FaqAnswer,
+                            Context = null,
+                            Id = portalDbRecord.FaqId,
+                            Metadata = null,
+                            Questions = questions.ToList(),
+                            Source = null
+                        };
 
-                            qnADTOs.Add(qnADTO);
-                        }
-                    }
-                    else
-                    {
-                        delete.Ids.Add(portalDbRecord.FaqId);
+                        qnADTOs.Add(qnADTO);
                     }
                 }
             }
         }
-
-        //    var updateQuestions = from p in portalDbRecordsDTO
-        //                          join m in metadataDTO
-        //                          on p.FaqId.ToString() equals m.Value
-        //                          join q in qnaDTO
-        //                          on m.Id equals q.Id
-        //                          select p.FaqQuestion;
 
         private static void LoadMetadata(List<QnADTO> qnaDTOs, List<MetadataDTO> metadataDTO)
         {
