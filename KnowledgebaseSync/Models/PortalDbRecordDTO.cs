@@ -4,7 +4,7 @@ namespace KnowledgebaseSync.Models
 {
     /// <summary>
     ///     A record from the Portal database to be merged with the 
-    ///     KnowledgebaseDownloadDTO into the KnowledgebaseUpdateDTO.
+    ///     KnowledgebaseDownloadDTO into the KnowledgebaseUpdate.
     /// </summary>
     public class PortalDbRecordDTO
     {

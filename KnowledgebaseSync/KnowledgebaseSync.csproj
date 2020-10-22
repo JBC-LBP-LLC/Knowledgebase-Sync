@@ -55,14 +55,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="KnowledgebaseSync.cs" />
-    <Compile Include="Models\ContextDTO.cs" />
-    <Compile Include="Models\KnowledgebaseUpdateDTO.cs" />
+    <Compile Include="Models\Add.cs" />
+    <Compile Include="Models\Context.cs" />
+    <Compile Include="Models\Delete.cs" />
+    <Compile Include="Models\Error.cs" />
+    <Compile Include="Models\ErrorResponse.cs" />
+    <Compile Include="Models\FileDTO.cs" />
+    <Compile Include="Models\InnerErrorModel.cs" />
+    <Compile Include="Models\KnowledgebaseUpdate.cs" />
+    <Compile Include="Models\Metadata.cs" />
     <Compile Include="Models\MetadataDTO.cs" />
+    <Compile Include="Models\Operation.cs" />
+    <Compile Include="Models\OperationStateType.cs" />
     <Compile Include="Models\PortalDbRecordDTO.cs" />
     <Compile Include="Models\PortalDbRecordsDTO.cs" />
     <Compile Include="Models\PromptDTO.cs" />
     <Compile Include="Models\QnADocumentsDTO.cs" />
     <Compile Include="Models\QnADTO.cs" />
+    <Compile Include="Models\ErrorCodeType.cs" />
+    <Compile Include="Models\Questions.cs" />
+    <Compile Include="Models\Update.cs" />
+    <Compile Include="Models\UpdateKbOperationDTO.cs" />
+    <Compile Include="Models\UpdateQnaDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

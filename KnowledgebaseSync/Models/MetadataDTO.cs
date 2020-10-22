@@ -8,18 +8,13 @@ namespace KnowledgebaseSync.Models
     public class MetadataDTO
     {
         /// <summary>
-        ///     Id of the parent record of the metadata record.
-        /// </summary>
-        public int Id { get; set; }
-
-        /// <summary>
-        ///     Name of the metadata item. Example: "categorytitle"
+        ///     Name of the metadata item. Example: "categorytitle".
         /// </summary>
         [JsonProperty("name")] 
         public string Name { get; set; }
 
         /// <summary>
-        ///     Value of the metadata item. Example: "401(k)"
+        ///     Value of the metadata item. Example: "401(k)".
         /// </summary>
         [JsonProperty("value")] 
         public string Value { get; set; }

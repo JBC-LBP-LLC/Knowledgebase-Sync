@@ -4,22 +4,22 @@ using System.Collections.Generic;
 namespace KnowledgebaseSync.Models
 {
     /// <summary>
-    ///     Context of a QnA, not to be confused with an EntityFramework Context.
+    ///     Context of a QnA
     /// </summary>
-    public class ContextDTO
+    public class Context
     {
         /// <summary>
         ///     To mark if a prompt is relevant only with a previous question or not. 
-        ///         true - Do not include this QnA as search result for queries without context 
-        ///         false - ignores context and includes this QnA in search result
+        ///     true - Do not include this QnA as search result for queries without context 
+        ///     false - ignores context and includes this QnA in search result
         /// </summary>
-        [JsonProperty("isContextOnly")] 
+        [JsonProperty("isContextOnly")]
         public bool IsContextOnly { get; set; }
 
         /// <summary>
         ///     List of prompts associated with the answer.
         /// </summary>
-        [JsonProperty("prompts")] 
+        [JsonProperty("prompts")]        
         public List<PromptDTO> Prompts { get; set; }
     }
 }
