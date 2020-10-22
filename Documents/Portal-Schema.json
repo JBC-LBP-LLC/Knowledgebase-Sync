@@ -1,0 +1,248 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "type": "array",
+    "title": "The root schema",
+    "description": "The root schema comprises the entire JSON document.",
+    "default": [],
+    "examples": [
+        [
+            {
+                "faqCategoryFaqId": 38128,
+                "faqId": 38294,
+                "faqQuestion": "When am I eligible to participate in the 401(k) plan?",
+                "faqAnswer": "<p>You are eligible to participate in the 401(k) plan immediately. Generally, summer interns and temporary colleagues are not eligible.</p>\n<p><a href=\"[Portal:Document:Documents/Secured Folder/bTestWord.docx |b1002593-3ce9-46ab-954c-724e3b47464d]\" target=\"_blank\">doc</a>&nbsp;<a href=\"[Portal:Document:9fe9661a-d466-4170-9a11-bcbe00bd2242]\" target=\"_blank\">txt</a></p>",
+                "faqDescription": "desc",
+                "faqSortOrder": 1,
+                "faqCategoryId": 14953,
+                "categoryTitle": "401(k)",
+                "categoryDescription": "401(k)",
+                "categorySortOrder": 9,
+                "roleIds": "",
+                "denyRoleIds": "",
+                "isCommonlyAsked": false,
+                "contentGroupIds": ",-1,",
+                "portalId": 1943
+            },
+            {
+                "faqCategoryFaqId": 38129,
+                "faqId": 38295,
+                "faqQuestion": "How do I enroll in the 401(k) plan?",
+                "faqAnswer": "You can enroll any time. You can also call 1.555.555.5555, 24 hours a day, seven days a week, to enroll or you may speak with a Customer Service Representative by selecting zero. Customer Service Representatives are available Monday through Friday from 8:00 a.m. to 8:00 p.m. (ET)",
+                "faqDescription": "",
+                "faqSortOrder": 2,
+                "faqCategoryId": 14953,
+                "categoryTitle": "401(k)",
+                "categoryDescription": "401(k)",
+                "categorySortOrder": 9,
+                "roleIds": "",
+                "denyRoleIds": "",
+                "isCommonlyAsked": false,
+                "contentGroupIds": ",-1,",
+                "portalId": 1943
+            }
+        ]
+    ],
+    "additionalItems": true,
+    "items": {
+        "$id": "#/items",
+        "anyOf": [
+            {
+                "$id": "#/items/anyOf/0",
+                "type": "object",
+                "title": "The first anyOf schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": {},
+                "examples": [
+                    {
+                        "faqCategoryFaqId": 38128,
+                        "faqId": 38294,
+                        "faqQuestion": "When am I eligible to participate in the 401(k) plan?",
+                        "faqAnswer": "<p>You are eligible to participate in the 401(k) plan immediately. Generally, summer interns and temporary colleagues are not eligible.</p>\n<p><a href=\"[Portal:Document:Documents/Secured Folder/bTestWord.docx |b1002593-3ce9-46ab-954c-724e3b47464d]\" target=\"_blank\">doc</a>&nbsp;<a href=\"[Portal:Document:9fe9661a-d466-4170-9a11-bcbe00bd2242]\" target=\"_blank\">txt</a></p>",
+                        "faqDescription": "desc",
+                        "faqSortOrder": 1,
+                        "faqCategoryId": 14953,
+                        "categoryTitle": "401(k)",
+                        "categoryDescription": "401(k)",
+                        "categorySortOrder": 9,
+                        "roleIds": "",
+                        "denyRoleIds": "",
+                        "isCommonlyAsked": false,
+                        "contentGroupIds": ",-1,",
+                        "portalId": 1943
+                    }
+                ],
+                "required": [
+                    "faqCategoryFaqId",
+                    "faqId",
+                    "faqQuestion",
+                    "faqAnswer",
+                    "faqDescription",
+                    "faqSortOrder",
+                    "faqCategoryId",
+                    "categoryTitle",
+                    "categoryDescription",
+                    "categorySortOrder",
+                    "roleIds",
+                    "denyRoleIds",
+                    "isCommonlyAsked",
+                    "contentGroupIds",
+                    "portalId"
+                ],
+                "properties": {
+                    "faqCategoryFaqId": {
+                        "$id": "#/items/anyOf/0/properties/faqCategoryFaqId",
+                        "type": "integer",
+                        "title": "The faqCategoryFaqId schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": 0,
+                        "examples": [
+                            38128
+                        ]
+                    },
+                    "faqId": {
+                        "$id": "#/items/anyOf/0/properties/faqId",
+                        "type": "integer",
+                        "title": "The faqId schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": 0,
+                        "examples": [
+                            38294
+                        ]
+                    },
+                    "faqQuestion": {
+                        "$id": "#/items/anyOf/0/properties/faqQuestion",
+                        "type": "string",
+                        "title": "The faqQuestion schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "When am I eligible to participate in the 401(k) plan?"
+                        ]
+                    },
+                    "faqAnswer": {
+                        "$id": "#/items/anyOf/0/properties/faqAnswer",
+                        "type": "string",
+                        "title": "The faqAnswer schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "<p>You are eligible to participate in the 401(k) plan immediately. Generally, summer interns and temporary colleagues are not eligible.</p>\n<p><a href=\"[Portal:Document:Documents/Secured Folder/bTestWord.docx |b1002593-3ce9-46ab-954c-724e3b47464d]\" target=\"_blank\">doc</a>&nbsp;<a href=\"[Portal:Document:9fe9661a-d466-4170-9a11-bcbe00bd2242]\" target=\"_blank\">txt</a></p>"
+                        ]
+                    },
+                    "faqDescription": {
+                        "$id": "#/items/anyOf/0/properties/faqDescription",
+                        "type": "string",
+                        "title": "The faqDescription schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "desc"
+                        ]
+                    },
+                    "faqSortOrder": {
+                        "$id": "#/items/anyOf/0/properties/faqSortOrder",
+                        "type": "integer",
+                        "title": "The faqSortOrder schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": 0,
+                        "examples": [
+                            1
+                        ]
+                    },
+                    "faqCategoryId": {
+                        "$id": "#/items/anyOf/0/properties/faqCategoryId",
+                        "type": "integer",
+                        "title": "The faqCategoryId schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": 0,
+                        "examples": [
+                            14953
+                        ]
+                    },
+                    "categoryTitle": {
+                        "$id": "#/items/anyOf/0/properties/categoryTitle",
+                        "type": "string",
+                        "title": "The categoryTitle schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "401(k)"
+                        ]
+                    },
+                    "categoryDescription": {
+                        "$id": "#/items/anyOf/0/properties/categoryDescription",
+                        "type": "string",
+                        "title": "The categoryDescription schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "401(k)"
+                        ]
+                    },
+                    "categorySortOrder": {
+                        "$id": "#/items/anyOf/0/properties/categorySortOrder",
+                        "type": "integer",
+                        "title": "The categorySortOrder schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": 0,
+                        "examples": [
+                            9
+                        ]
+                    },
+                    "roleIds": {
+                        "$id": "#/items/anyOf/0/properties/roleIds",
+                        "type": "string",
+                        "title": "The roleIds schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            ""
+                        ]
+                    },
+                    "denyRoleIds": {
+                        "$id": "#/items/anyOf/0/properties/denyRoleIds",
+                        "type": "string",
+                        "title": "The denyRoleIds schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            ""
+                        ]
+                    },
+                    "isCommonlyAsked": {
+                        "$id": "#/items/anyOf/0/properties/isCommonlyAsked",
+                        "type": "boolean",
+                        "title": "The isCommonlyAsked schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": false,
+                        "examples": [
+                            false
+                        ]
+                    },
+                    "contentGroupIds": {
+                        "$id": "#/items/anyOf/0/properties/contentGroupIds",
+                        "type": "string",
+                        "title": "The contentGroupIds schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            ",-1,"
+                        ]
+                    },
+                    "portalId": {
+                        "$id": "#/items/anyOf/0/properties/portalId",
+                        "type": "integer",
+                        "title": "The portalId schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": 0,
+                        "examples": [
+                            1943
+                        ]
+                    }
+                },
+                "additionalProperties": true
+            }
+        ]
+    }
+}
