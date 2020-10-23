@@ -1,4 +1,5 @@
 ﻿using System;
+using KnowledgebaseSync;
 
 namespace KbSyncDevConsole
 {
@@ -8,8 +9,9 @@ namespace KbSyncDevConsole
         {
             var portalDb = System.IO.File.ReadAllText(@"C:\Dev\WTW\RPA-Knowledgebase\Knowledgebase-Sync\Documents\Portal-905-Db.json");
             var kbDownload = System.IO.File.ReadAllText(@"C:\Dev\WTW\RPA-Knowledgebase\Knowledgebase-Sync\Documents\Knowledgebase-905.json");
-            
-            string kbUpdate = KnowledgebaseSync.KnowledgebaseSync.CreateKnowledgebaseUpdate(portalDb, kbDownload);
+
+            var CreateKnowledgebaseUpdate = new KnowledgebaseSync();
+            string kbUpdate = knowledgebaseSync.CreateKnowledgebaseUpdate(portalDb, kbDownload);
 
             Console.WriteLine(kbUpdate);
             Console.ReadLine();

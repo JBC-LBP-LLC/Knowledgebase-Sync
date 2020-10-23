@@ -7,7 +7,27 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnowledgebaseSync", "Knowle
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KbSyncDevConsole", "KbSyncDevConsole\KbSyncDevConsole.csproj", "{AD97FB49-6A77-49D2-919B-F0AB9D9C888B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RPA.KnowledgebaseSync", "RPA.KnowledgebaseSync", "{358C5DD8-A402-45A5-A2DF-33B9D76A562D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPA.KnowledgebaseSync", "RPA.KnowledgebaseSync\RPA.KnowledgebaseSync\RPA.KnowledgebaseSync.csproj", "{1A86752E-4725-4BEC-ACDC-B55FAF53C081}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPA.KnowledgebaseSync.Activities", "RPA.KnowledgebaseSync\RPA.KnowledgebaseSync.Activities\RPA.KnowledgebaseSync.Activities.csproj", "{6F0ADDF1-3E6B-4B35-BD53-643FB9B3B809}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPA.KnowledgebaseSync.Activities.Design", "RPA.KnowledgebaseSync\RPA.KnowledgebaseSync.Activities.Design\RPA.KnowledgebaseSync.Activities.Design.csproj", "{38E9009C-56F0-4627-88BE-1A274F02742C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{A6009EA5-630F-4A21-B311-21D9C7C30EEA}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "UiPath.Shared.Activities", "Shared\UiPath.Shared.Activities\UiPath.Shared.Activities.shproj", "{4546856D-EA50-45C6-9419-EEEACB5A80AA}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "UiPath.Shared.Activities.Design", "Shared\UiPath.Shared.Activities.Design\UiPath.Shared.Activities.Design.shproj", "{DF9C43F0-ADD3-4FBF-995E-84B92F9CBF25}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Shared\UiPath.Shared.Activities.Design\UiPath.Shared.Activities.Design.projitems*{38e9009c-56f0-4627-88be-1a274f02742c}*SharedItemsImports = 5
+		Shared\UiPath.Shared.Activities\UiPath.Shared.Activities.projitems*{4546856d-ea50-45c6-9419-eeeacb5a80aa}*SharedItemsImports = 13
+		Shared\UiPath.Shared.Activities\UiPath.Shared.Activities.projitems*{6f0addf1-3e6b-4b35-bd53-643fb9b3b809}*SharedItemsImports = 5
+		Shared\UiPath.Shared.Activities.Design\UiPath.Shared.Activities.Design.projitems*{df9c43f0-add3-4fbf-995e-84b92f9cbf25}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -21,9 +41,28 @@ Global
 		{AD97FB49-6A77-49D2-919B-F0AB9D9C888B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD97FB49-6A77-49D2-919B-F0AB9D9C888B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD97FB49-6A77-49D2-919B-F0AB9D9C888B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A86752E-4725-4BEC-ACDC-B55FAF53C081}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A86752E-4725-4BEC-ACDC-B55FAF53C081}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A86752E-4725-4BEC-ACDC-B55FAF53C081}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A86752E-4725-4BEC-ACDC-B55FAF53C081}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F0ADDF1-3E6B-4B35-BD53-643FB9B3B809}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F0ADDF1-3E6B-4B35-BD53-643FB9B3B809}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F0ADDF1-3E6B-4B35-BD53-643FB9B3B809}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F0ADDF1-3E6B-4B35-BD53-643FB9B3B809}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38E9009C-56F0-4627-88BE-1A274F02742C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38E9009C-56F0-4627-88BE-1A274F02742C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38E9009C-56F0-4627-88BE-1A274F02742C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38E9009C-56F0-4627-88BE-1A274F02742C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1A86752E-4725-4BEC-ACDC-B55FAF53C081} = {358C5DD8-A402-45A5-A2DF-33B9D76A562D}
+		{6F0ADDF1-3E6B-4B35-BD53-643FB9B3B809} = {358C5DD8-A402-45A5-A2DF-33B9D76A562D}
+		{38E9009C-56F0-4627-88BE-1A274F02742C} = {358C5DD8-A402-45A5-A2DF-33B9D76A562D}
+		{4546856D-EA50-45C6-9419-EEEACB5A80AA} = {A6009EA5-630F-4A21-B311-21D9C7C30EEA}
+		{DF9C43F0-ADD3-4FBF-995E-84B92F9CBF25} = {A6009EA5-630F-4A21-B311-21D9C7C30EEA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {64658527-76FD-4AC9-BDF3-BFE7E522C9F1}

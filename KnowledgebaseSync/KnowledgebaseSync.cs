@@ -5,9 +5,9 @@ using System.Linq;
 
 namespace KnowledgebaseSync
 {
-    public static class KnowledgebaseSync
+    public class KnowledgebaseSync
     {
-        public static string CreateKnowledgebaseUpdate(string portalDb, string knowledgebase)
+        public string CreateKnowledgebaseUpdate(string portalDb, string knowledgebase)
         {
             IEnumerable<PortalDbRecordDTO> portalDbRecords = JsonConvert.DeserializeObject<IEnumerable<PortalDbRecordDTO>>(portalDb);
             QnADocumentsDTO qnaDocumentsDTO = JsonConvert.DeserializeObject<QnADocumentsDTO>(knowledgebase);
