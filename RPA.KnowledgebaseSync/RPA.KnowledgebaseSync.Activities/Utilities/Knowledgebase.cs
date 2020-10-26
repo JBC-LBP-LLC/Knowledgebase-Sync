@@ -3,13 +3,13 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace KnowledgebaseSync
+namespace RPA.KnowledgebaseSync.Activities.Utilities
 {
-    public class KnowledgebaseSync
+    public static class Knowledgebase
     {
-        public string CreateKnowledgebaseUpdate(string portalDb, string knowledgebase)
+        public static string CreateKnowledgebaseUpdate(string portal, string knowledgebase)
         {
-            IEnumerable<PortalDbRecordDTO> portalDbRecords = JsonConvert.DeserializeObject<IEnumerable<PortalDbRecordDTO>>(portalDb);
+            IEnumerable<PortalDbRecordDTO> portalDbRecords = JsonConvert.DeserializeObject<IEnumerable<PortalDbRecordDTO>>(portal);
             QnADocumentsDTO qnaDocumentsDTO = JsonConvert.DeserializeObject<QnADocumentsDTO>(knowledgebase);
 
             FileDTO fileDTO = new FileDTO
@@ -155,9 +155,9 @@ namespace KnowledgebaseSync
             }
         }
 
-        private static void LoadMetadata(List<QnADTO> qnaDTOs, List<MetadataDTO> metadataDTO)
+        private static void LoadMetadata(List<QnADTO> qnADTOs, List<MetadataDTO> metadataDTOs)
         {
-            var metadataArray = qnaDTOs.ToArray();
+            var metadataArray = qnADTOs.ToArray();
 
             foreach (var metadata in metadataArray)
             {
@@ -171,9 +171,9 @@ namespace KnowledgebaseSync
                         Value = metadataFields[i].Value
                     };
 
-                    metadataDTO.Add(metadataRecord);
+                    metadataDTOs.Add(metadataRecord);
                 };
             };
         }
-    }
+    };
 }

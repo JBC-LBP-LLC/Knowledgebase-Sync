@@ -9,6 +9,9 @@
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <DocumentationFile>bin\$(Configuration)\RPA.KnowledgebaseSync.Activities.xml</DocumentationFile>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
 	<ItemGroup>
 		<Reference Include="System" />
 		
@@ -27,9 +30,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\KnowledgebaseSync\KnowledgebaseSync.csproj">
-      <Private>true</Private>
-    </ProjectReference>
     <ProjectReference Include="..\RPA.KnowledgebaseSync\RPA.KnowledgebaseSync.csproj" PrivateAssets="All" />
   </ItemGroup>
   <ItemGroup>

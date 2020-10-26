@@ -3,6 +3,7 @@ using System.Activities;
 using System.Threading;
 using System.Threading.Tasks;
 using RPA.KnowledgebaseSync.Activities.Properties;
+using RPA.KnowledgebaseSync.Activities.Utilities;
 using UiPath.Shared.Activities;
 using UiPath.Shared.Activities.Localization;
 
@@ -53,16 +54,9 @@ namespace RPA.KnowledgebaseSync.Activities
             // Inputs
             var portalid = PortalID.Get(context);
 
-            ///////////////////////////
-            // Add execution logic HERE
-            ///////////////////////////
             var portalDb = System.IO.File.ReadAllText(@"C:\Dev\WTW\RPA-Knowledgebase\Knowledgebase-Sync\Documents\Portal-905-Db.json");
             var kbDownload = System.IO.File.ReadAllText(@"C:\Dev\WTW\RPA-Knowledgebase\Knowledgebase-Sync\Documents\Knowledgebase-905.json");
-            //string kbUpdate = CreateKnowledgebaseUpdate(portalDb, kbDownload);
-
-            //Console.WriteLine(kbUpdate);
-            Console.ReadLine();
-            Console.WriteLine();
+            string kbUpdate = Knowledgebase.CreateKnowledgebaseUpdate(portalDb, kbDownload);
 
             // Outputs
             return (ctx) => {

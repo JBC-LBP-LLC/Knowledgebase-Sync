@@ -3,17 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnowledgebaseSync", "KnowledgebaseSync\KnowledgebaseSync.csproj", "{7048545E-3A2D-477A-82AD-17A5D3A9864B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KbSyncDevConsole", "KbSyncDevConsole\KbSyncDevConsole.csproj", "{AD97FB49-6A77-49D2-919B-F0AB9D9C888B}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RPA.KnowledgebaseSync", "RPA.KnowledgebaseSync", "{358C5DD8-A402-45A5-A2DF-33B9D76A562D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPA.KnowledgebaseSync", "RPA.KnowledgebaseSync\RPA.KnowledgebaseSync\RPA.KnowledgebaseSync.csproj", "{1A86752E-4725-4BEC-ACDC-B55FAF53C081}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RPA.KnowledgebaseSync", "RPA.KnowledgebaseSync\RPA.KnowledgebaseSync\RPA.KnowledgebaseSync.csproj", "{1A86752E-4725-4BEC-ACDC-B55FAF53C081}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPA.KnowledgebaseSync.Activities", "RPA.KnowledgebaseSync\RPA.KnowledgebaseSync.Activities\RPA.KnowledgebaseSync.Activities.csproj", "{6F0ADDF1-3E6B-4B35-BD53-643FB9B3B809}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RPA.KnowledgebaseSync.Activities", "RPA.KnowledgebaseSync\RPA.KnowledgebaseSync.Activities\RPA.KnowledgebaseSync.Activities.csproj", "{6F0ADDF1-3E6B-4B35-BD53-643FB9B3B809}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPA.KnowledgebaseSync.Activities.Design", "RPA.KnowledgebaseSync\RPA.KnowledgebaseSync.Activities.Design\RPA.KnowledgebaseSync.Activities.Design.csproj", "{38E9009C-56F0-4627-88BE-1A274F02742C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RPA.KnowledgebaseSync.Activities.Design", "RPA.KnowledgebaseSync\RPA.KnowledgebaseSync.Activities.Design\RPA.KnowledgebaseSync.Activities.Design.csproj", "{38E9009C-56F0-4627-88BE-1A274F02742C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{A6009EA5-630F-4A21-B311-21D9C7C30EEA}"
 EndProject
@@ -33,14 +29,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7048545E-3A2D-477A-82AD-17A5D3A9864B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7048545E-3A2D-477A-82AD-17A5D3A9864B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7048545E-3A2D-477A-82AD-17A5D3A9864B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7048545E-3A2D-477A-82AD-17A5D3A9864B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AD97FB49-6A77-49D2-919B-F0AB9D9C888B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AD97FB49-6A77-49D2-919B-F0AB9D9C888B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AD97FB49-6A77-49D2-919B-F0AB9D9C888B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AD97FB49-6A77-49D2-919B-F0AB9D9C888B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1A86752E-4725-4BEC-ACDC-B55FAF53C081}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1A86752E-4725-4BEC-ACDC-B55FAF53C081}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A86752E-4725-4BEC-ACDC-B55FAF53C081}.Release|Any CPU.ActiveCfg = Release|Any CPU
