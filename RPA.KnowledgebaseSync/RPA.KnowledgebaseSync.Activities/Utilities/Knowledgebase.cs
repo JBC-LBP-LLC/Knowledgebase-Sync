@@ -1,21 +1,23 @@
 ﻿using KnowledgebaseSync.Models;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 
 namespace RPA.KnowledgebaseSync.Activities.Utilities
 {
-    public static class Knowledgebase
+    public static class KnowledgebaseUtility
     {
-        public static string CreateKnowledgebaseUpdate(string portal, string knowledgebase)
+        public static string CreateKnowledgebaseUpdate(DataTable portal, string knowledgebase)
         {
-            IEnumerable<PortalDbRecordDTO> portalDbRecords = JsonConvert.DeserializeObject<IEnumerable<PortalDbRecordDTO>>(portal);
+            var portalJSON = Newtonsoft.Json.JsonConvert.SerializeObject(portal);
+            IEnumerable<PortalDbRecordDTO> portalDbRecords = JsonConvert.DeserializeObject<IEnumerable<PortalDbRecordDTO>>(portalJSON);
             QnADocumentsDTO qnaDocumentsDTO = JsonConvert.DeserializeObject<QnADocumentsDTO>(knowledgebase);
 
             FileDTO fileDTO = new FileDTO
             {
-                FileName = "",
-                FileUri = ""
+                FileName = null,
+                FileUri = null
             };
 
             List<FileDTO> fileDTOs = new List<FileDTO>
@@ -37,7 +39,7 @@ namespace RPA.KnowledgebaseSync.Activities.Utilities
 
             Add add = new Add
             {
-                Files = fileDTOs,
+                Files = null,
                 QnaList = addQnADTOs,
                 Urls = new List<string>()
             };

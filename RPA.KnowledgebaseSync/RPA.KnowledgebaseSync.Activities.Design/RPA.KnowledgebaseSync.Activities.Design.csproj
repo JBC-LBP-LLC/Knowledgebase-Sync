@@ -7,29 +7,30 @@
   </PropertyGroup>
   <!-- Package Metadata -->
   <PropertyGroup>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <Description>This package was generated using the UiPath VS Extension.</Description>
-    <Authors>Company</Authors>
-    <Company>Company</Company>
-    <Copyright>© 2020 Company</Copyright>
+    <Authors>Jason Carney</Authors>
+    <Company>WTW</Company>
+    <Copyright>© 2020 WTW</Copyright>
     <PackageTags>UiPath Activit𝗒</PackageTags>
     <PackageProjectUrl>https://docs.uipath.com/integrations/docs/how-to-create-activities</PackageProjectUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/NuGet/Samples/master/PackageIconNuspecExample/icon.png</PackageIconUrl>
     <!--<PackageIcon>packageIcon.png</PackageIcon>--> <!--PackageIcon not yet supported in UiPath Studio-->
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>1.0.0.0</FileVersion>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <AssemblyVersion>1.1.1.0</AssemblyVersion>
+    <FileVersion>1.1.1.0</FileVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
   </PropertyGroup>
   <!-- Package Versions -->
   <PropertyGroup Condition="'$(Configuration)' == 'Debug' AND '$(DesignTimeBuild)' != 'true'">
-    <PackageVersion>0.1.0.$([System.DateTime]::UtcNow.ToString(MMddHHmmss))</PackageVersion>
+    <PackageVersion>1.1.6.$([System.DateTime]::UtcNow.ToString(MMddHHmmss))</PackageVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
-    <PackageVersion>0.1.0</PackageVersion>
+    <PackageVersion>1.1.6</PackageVersion>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Designers\KnowledgebaseSyncDesigner.xaml" />
     <None Remove="Designers\SyncKnowledgebaseDesigner.xaml" />
   </ItemGroup>
   <!-- Package Icon -->
@@ -53,6 +54,7 @@
   <PropertyGroup>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <DocumentationFile>bin\$(Configuration)\RPA.KnowledgebaseSync.Activities.Design.xml</DocumentationFile>
+    <Version>1.1.1</Version>
   </PropertyGroup>
 	<ItemGroup>
 		<Reference Include="System" />
@@ -77,8 +79,13 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Page>
+    <Page Include="Designers\KnowledgebaseSyncDesigner.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Page>
     <Page Include="Designers\SyncKnowledgebaseDesigner.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Page>
     <Page Include="Themes\Icons.xaml">
       <Generator>XamlIntelliSenseFileGenerator</Generator>
