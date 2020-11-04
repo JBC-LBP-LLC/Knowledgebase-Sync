@@ -46,7 +46,7 @@ namespace RPA.KnowledgebaseSync.Activities.Utilities
 
             Update update = new Update
             {
-                Name = "Troy",
+                Name = "QA-bcnocg-905",
                 QnaList = updateQnaDTOs,
                 Urls = new List<string>()
             };
@@ -131,29 +131,43 @@ namespace RPA.KnowledgebaseSync.Activities.Utilities
         {
             foreach (var portalDbRecord in portalDbRecords)
             {
+                bool found = false;
+                string faqId = "";
                 List<string> questions = new List<string>();
+
                 foreach (var qnaDTO in qnaDocumentsDTO.QnaDTO)
                 {
-                    var metadata = from m in qnaDTO.Metadata
-                                   where m.Name == "faqid"
-                                   select m.Value;
-
-                    if (metadata.FirstOrDefault() == null)
+                    foreach (var metadataItem in qnaDTO.Metadata)
                     {
-                        questions.Add(portalDbRecord.FaqQuestion);
-                        QnADTO qnADTO = new QnADTO
+                        if (metadataItem.Name == "faqid")
                         {
-                            Answer = portalDbRecord.FaqAnswer,
-                            Context = null,
-                            Id = portalDbRecord.FaqId,
-                            Metadata = null,
-                            Questions = questions.ToList(),
-                            Source = null
-                        };
+                            faqId = metadataItem.Value;
+                        }
+                    }
 
-                        qnADTOs.Add(qnADTO);
+                    if (faqId == portalDbRecord.FaqId.ToString())
+                    {
+                        found = true;
                     }
                 }
+
+                if (!found)
+                {
+                    questions.Add(portalDbRecord.FaqQuestion);
+                    QnADTO qnADTO = new QnADTO
+                    {
+                        Answer = portalDbRecord.FaqAnswer,
+                        Context = null,
+                        Id = portalDbRecord.FaqId,
+                        Metadata = null,
+                        Questions = questions.ToList(),
+                        Source = null
+                    };
+
+                    qnADTOs.Add(qnADTO);
+                }
+
+                found = false;
             }
         }
 

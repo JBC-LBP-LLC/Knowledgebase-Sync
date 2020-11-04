@@ -17,6 +17,8 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "UiPath.Shared.Activities", 
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "UiPath.Shared.Activities.Design", "Shared\UiPath.Shared.Activities.Design\UiPath.Shared.Activities.Design.shproj", "{DF9C43F0-ADD3-4FBF-995E-84B92F9CBF25}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KbSyncDebugUtility", "KbSyncDebugUtility\KbSyncDebugUtility.csproj", "{84447818-19DD-40EF-BDFD-9D369A1CFF3D}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Shared\UiPath.Shared.Activities.Design\UiPath.Shared.Activities.Design.projitems*{38e9009c-56f0-4627-88be-1a274f02742c}*SharedItemsImports = 5
@@ -41,6 +43,10 @@ Global
 		{38E9009C-56F0-4627-88BE-1A274F02742C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38E9009C-56F0-4627-88BE-1A274F02742C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38E9009C-56F0-4627-88BE-1A274F02742C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84447818-19DD-40EF-BDFD-9D369A1CFF3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84447818-19DD-40EF-BDFD-9D369A1CFF3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84447818-19DD-40EF-BDFD-9D369A1CFF3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84447818-19DD-40EF-BDFD-9D369A1CFF3D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
