@@ -8,7 +8,7 @@ namespace RPA.KnowledgebaseSync.Activities.Utilities
 {
     public static class KnowledgebaseUtility
     {
-        public static string CreateKnowledgebaseUpdate(DataTable portal, string knowledgebase)
+        public static string CreateKnowledgebaseUpdate(DataTable portal, string knowledgebase, string knowledgebaseName)
         {
             var portalJSON = Newtonsoft.Json.JsonConvert.SerializeObject(portal);
             IEnumerable<PortalDbRecordDTO> portalDbRecords = JsonConvert.DeserializeObject<IEnumerable<PortalDbRecordDTO>>(portalJSON);
@@ -46,7 +46,7 @@ namespace RPA.KnowledgebaseSync.Activities.Utilities
 
             Update update = new Update
             {
-                Name = "QA-bcnocg-905",
+                Name = knowledgebaseName,
                 QnaList = updateQnaDTOs,
                 Urls = new List<string>()
             };

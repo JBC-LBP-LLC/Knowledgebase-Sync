@@ -178,11 +178,11 @@
     <comment>error message; {0} &amp; {1} are complementary properties</comment>
   </data>
   <data name="SyncKnowledgebase_DisplayName" xml:space="preserve">
-    <value>Sync Knowledgebase</value>
+    <value>SyncKnowledgebase</value>
     <comment>activity name</comment>
   </data>
   <data name="SyncKnowledgebase_Description" xml:space="preserve">
-    <value>Syncing QnAMaker to Portals</value>
+    <value>Sync Portal data to QnA Knowledgebase</value>
     <comment>activity description</comment>
   </data>
   <data name="SyncKnowledgebase_PortalID_DisplayName" xml:space="preserve">
@@ -233,6 +233,70 @@
     <value>QnA Knowledgebase Update JsonObject</value>
     <comment>property description</comment>
   </data>
+  <data name="SyncKnowledgebase_PortalDT_DisplayName" xml:space="preserve">
+    <value>PortalDT</value>
+    <comment>property name</comment>
+  </data>
+  <data name="SyncKnowledgebase_PortalDT_Description" xml:space="preserve">
+    <value>Portal DataTable</value>
+    <comment>property description</comment>
+  </data>
+  <data name="SyncKnowledgebase_Knowledgebase_DisplayName" xml:space="preserve">
+    <value>Knowledgebase</value>
+    <comment>property name</comment>
+  </data>
+  <data name="SyncKnowledgebase_Knowledgebase_Description" xml:space="preserve">
+    <value>QnA Knowledgebase JsonObject</value>
+    <comment>property description</comment>
+  </data>
+  <data name="SyncKnowledgebase_UpdateKbOperation_DisplayName" xml:space="preserve">
+    <value>UpdateKbOperation</value>
+    <comment>property name</comment>
+  </data>
+  <data name="SyncKnowledgebase_UpdateKbOperation_Description" xml:space="preserve">
+    <value>QnA Knowledgebase Update JsonObject</value>
+    <comment>property description</comment>
+  </data>
+  <data name="KbSync_DisplayName" xml:space="preserve">
+    <value>KbSync</value>
+    <comment>activity name</comment>
+  </data>
+  <data name="KbSync_Description" xml:space="preserve">
+    <value>Create UpdateKbOperation JSON Object</value>
+    <comment>activity description</comment>
+  </data>
+  <data name="KbSync_PortalDT_DisplayName" xml:space="preserve">
+    <value>PortalDT</value>
+    <comment>property name</comment>
+  </data>
+  <data name="KbSync_PortalDT_Description" xml:space="preserve">
+    <value>Portal DataTable</value>
+    <comment>property description</comment>
+  </data>
+  <data name="KbSync_Knowledgebase_DisplayName" xml:space="preserve">
+    <value>Knowledgebase</value>
+    <comment>property name</comment>
+  </data>
+  <data name="KbSync_Knowledgebase_Description" xml:space="preserve">
+    <value>Knowledgebase JSON Object</value>
+    <comment>property description</comment>
+  </data>
+  <data name="KbSync_KnowledgebaseName_DisplayName" xml:space="preserve">
+    <value>KnowledgebaseName</value>
+    <comment>property name</comment>
+  </data>
+  <data name="KbSync_KnowledgebaseName_Description" xml:space="preserve">
+    <value>Name of Knowledgebase</value>
+    <comment>property description</comment>
+  </data>
+  <data name="KbSync_UpdateKbOperation_DisplayName" xml:space="preserve">
+    <value>UpdateKbOperation</value>
+    <comment>property name</comment>
+  </data>
+  <data name="KbSync_UpdateKbOperation_Description" xml:space="preserve">
+    <value>Knowledgebase Update JSON Object</value>
+    <comment>property description</comment>
+  </data>
   <data name="Authentication_Category" xml:space="preserve">
     <value>Authentication</value>
     <comment>category</comment>
@@ -269,19 +333,19 @@
     <value>Please provide values for both {0} and {1}.</value>
     <comment>error message; {0} &amp; {1} are complementary properties</comment>
   </data>
-  <data name="SyncKnowledgebase_DisplayName" xml:space="preserve">
-    <value>SyncKnowledgebase</value>
+  <data name="KnowledgebaseSync_DisplayName" xml:space="preserve">
+    <value>KnowledgebaseSync</value>
     <comment>activity name</comment>
   </data>
-  <data name="SyncKnowledgebase_Description" xml:space="preserve">
-    <value>Sync Portal data to QnA Knowledgebase</value>
+  <data name="KnowledgebaseSync_Description" xml:space="preserve">
+    <value>Create the Knowledgebase Update JSON Object</value>
     <comment>activity description</comment>
   </data>
-  <data name="SyncKnowledgebase_PortalDT_DisplayName" xml:space="preserve">
+  <data name="KnowledgebaseSync_PortalDT_DisplayName" xml:space="preserve">
     <value>PortalDT</value>
     <comment>property name</comment>
   </data>
-  <data name="SyncKnowledgebase_PortalDT_Description" xml:space="preserve">
+  <data name="KnowledgebaseSync_PortalDT_Description" xml:space="preserve">
     <value>Portal DataTable</value>
     <comment>property description</comment>
   </data>
@@ -289,24 +353,36 @@
     <value>Input</value>
     <comment>category</comment>
   </data>
-  <data name="SyncKnowledgebase_Knowledgebase_DisplayName" xml:space="preserve">
+  <data name="KnowledgebaseSync_Knowledgebase_DisplayName" xml:space="preserve">
     <value>Knowledgebase</value>
     <comment>property name</comment>
   </data>
-  <data name="SyncKnowledgebase_Knowledgebase_Description" xml:space="preserve">
-    <value>QnA Knowledgebase JsonObject</value>
+  <data name="KnowledgebaseSync_Knowledgebase_Description" xml:space="preserve">
+    <value>Knowledgebase JSON Object</value>
     <comment>property description</comment>
   </data>
   <data name="Input_Category" xml:space="preserve">
     <value>Input</value>
     <comment>category</comment>
   </data>
-  <data name="SyncKnowledgebase_UpdateKbOperation_DisplayName" xml:space="preserve">
-    <value>UpdateKbOperation</value>
+  <data name="KnowledgebaseSync_KnowledgebaseName_DisplayName" xml:space="preserve">
+    <value>KnowledgebaseName</value>
     <comment>property name</comment>
   </data>
-  <data name="SyncKnowledgebase_UpdateKbOperation_Description" xml:space="preserve">
-    <value>QnA Knowledgebase Update JsonObject</value>
+  <data name="KnowledgebaseSync_KnowledgebaseName_Description" xml:space="preserve">
+    <value>Knowledgebase Name</value>
+    <comment>property description</comment>
+  </data>
+  <data name="Input_Category" xml:space="preserve">
+    <value>Input</value>
+    <comment>category</comment>
+  </data>
+  <data name="KnowledgebaseSync_UpdateKbJson_DisplayName" xml:space="preserve">
+    <value>UpdateKbJson</value>
+    <comment>property name</comment>
+  </data>
+  <data name="KnowledgebaseSync_UpdateKbJson_Description" xml:space="preserve">
+    <value>Knowledgebase Update JSON Object</value>
     <comment>property description</comment>
   </data>
   <data name="Output_Category" xml:space="preserve">

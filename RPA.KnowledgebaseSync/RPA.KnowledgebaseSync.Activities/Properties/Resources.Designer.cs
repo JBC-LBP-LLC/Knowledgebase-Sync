@@ -115,7 +115,97 @@ namespace RPA.KnowledgebaseSync.Activities.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sync Portal data to QnA Knowledgebase.
+        ///   Looks up a localized string similar to Create UpdateKbOperation JSON Object.
+        /// </summary>
+        public static string KbSync_Description {
+            get {
+                return ResourceManager.GetString("KbSync_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KbSync.
+        /// </summary>
+        public static string KbSync_DisplayName {
+            get {
+                return ResourceManager.GetString("KbSync_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Knowledgebase JSON Object.
+        /// </summary>
+        public static string KbSync_Knowledgebase_Description {
+            get {
+                return ResourceManager.GetString("KbSync_Knowledgebase_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Knowledgebase.
+        /// </summary>
+        public static string KbSync_Knowledgebase_DisplayName {
+            get {
+                return ResourceManager.GetString("KbSync_Knowledgebase_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name of Knowledgebase.
+        /// </summary>
+        public static string KbSync_KnowledgebaseName_Description {
+            get {
+                return ResourceManager.GetString("KbSync_KnowledgebaseName_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KnowledgebaseName.
+        /// </summary>
+        public static string KbSync_KnowledgebaseName_DisplayName {
+            get {
+                return ResourceManager.GetString("KbSync_KnowledgebaseName_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Portal DataTable.
+        /// </summary>
+        public static string KbSync_PortalDT_Description {
+            get {
+                return ResourceManager.GetString("KbSync_PortalDT_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PortalDT.
+        /// </summary>
+        public static string KbSync_PortalDT_DisplayName {
+            get {
+                return ResourceManager.GetString("KbSync_PortalDT_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Knowledgebase Update JSON Object.
+        /// </summary>
+        public static string KbSync_UpdateKbOperation_Description {
+            get {
+                return ResourceManager.GetString("KbSync_UpdateKbOperation_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UpdateKbOperation.
+        /// </summary>
+        public static string KbSync_UpdateKbOperation_DisplayName {
+            get {
+                return ResourceManager.GetString("KbSync_UpdateKbOperation_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create the Knowledgebase Update JSON Object.
         /// </summary>
         public static string KnowledgebaseSync_Description {
             get {
@@ -151,7 +241,7 @@ namespace RPA.KnowledgebaseSync.Activities.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to QnA Knowledgebase JsonObject.
+        ///   Looks up a localized string similar to Knowledgebase JSON Object.
         /// </summary>
         public static string KnowledgebaseSync_Knowledgebase_Description {
             get {
@@ -165,6 +255,24 @@ namespace RPA.KnowledgebaseSync.Activities.Properties {
         public static string KnowledgebaseSync_Knowledgebase_DisplayName {
             get {
                 return ResourceManager.GetString("KnowledgebaseSync_Knowledgebase_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Knowledgebase Name.
+        /// </summary>
+        public static string KnowledgebaseSync_KnowledgebaseName_Description {
+            get {
+                return ResourceManager.GetString("KnowledgebaseSync_KnowledgebaseName_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KnowledgebaseName.
+        /// </summary>
+        public static string KnowledgebaseSync_KnowledgebaseName_DisplayName {
+            get {
+                return ResourceManager.GetString("KnowledgebaseSync_KnowledgebaseName_DisplayName", resourceCulture);
             }
         }
         
@@ -183,6 +291,42 @@ namespace RPA.KnowledgebaseSync.Activities.Properties {
         public static string KnowledgebaseSync_PortalDB_DisplayName {
             get {
                 return ResourceManager.GetString("KnowledgebaseSync_PortalDB_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Portal DataTable.
+        /// </summary>
+        public static string KnowledgebaseSync_PortalDT_Description {
+            get {
+                return ResourceManager.GetString("KnowledgebaseSync_PortalDT_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PortalDT.
+        /// </summary>
+        public static string KnowledgebaseSync_PortalDT_DisplayName {
+            get {
+                return ResourceManager.GetString("KnowledgebaseSync_PortalDT_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Knowledgebase Update JSON Object.
+        /// </summary>
+        public static string KnowledgebaseSync_UpdateKbJson_Description {
+            get {
+                return ResourceManager.GetString("KnowledgebaseSync_UpdateKbJson_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UpdateKbJson.
+        /// </summary>
+        public static string KnowledgebaseSync_UpdateKbJson_DisplayName {
+            get {
+                return ResourceManager.GetString("KnowledgebaseSync_UpdateKbJson_DisplayName", resourceCulture);
             }
         }
         

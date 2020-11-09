@@ -14,10 +14,9 @@ namespace RPA.KnowledgebaseSync.Activities.Design
             builder.ValidateTable();
 
             var categoryAttribute = new CategoryAttribute($"{Resources.Category}");
-            builder.AddCustomAttributes(typeof(SyncKnowledgebase), categoryAttribute);
-            builder.AddCustomAttributes(typeof(SyncKnowledgebase), new DesignerAttribute(typeof(SyncKnowledgebaseDesigner)));
-            builder.AddCustomAttributes(typeof(SyncKnowledgebase), new HelpKeywordAttribute(""));
-
+            builder.AddCustomAttributes(typeof(KnowledgebaseSync), categoryAttribute);
+            builder.AddCustomAttributes(typeof(KnowledgebaseSync), new DesignerAttribute(typeof(SyncKnowledgebaseDesigner)));
+            builder.AddCustomAttributes(typeof(KnowledgebaseSync), new HelpKeywordAttribute(""));
 
             MetadataStore.AddAttributeTable(builder.CreateTable());
         }

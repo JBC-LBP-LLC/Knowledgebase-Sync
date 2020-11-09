@@ -26,7 +26,7 @@ namespace KbSyncDebugUtility
                 }
             }
 
-            var JsonObjectUpdateKbOperationDTO = KnowledgebaseUtility.CreateKnowledgebaseUpdate(DataTable905, kbObject905);
+            var JsonObjectUpdateKbOperationDTO = KnowledgebaseUtility.CreateKnowledgebaseUpdate(DataTable905, kbObject905, "QA-bcnocg-905");
 
             Console.WriteLine(JsonObjectUpdateKbOperationDTO);
             Console.WriteLine("Press any key to exit.");
