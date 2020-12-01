@@ -94,8 +94,6 @@ namespace RPA.KnowledgebaseSync.Activities.Utilities
 
                         if (portalDbRecord.FaqId.ToString() == faqid)
                         {
-                            questions.Add.Add(portalDbRecord.FaqQuestion);
-
                             foreach (var item in qnaDTO.Metadata)
                             {
                                 MetadataDTO metadataDTO = new MetadataDTO
@@ -106,6 +104,9 @@ namespace RPA.KnowledgebaseSync.Activities.Utilities
 
                                 metadata.Add.Add(metadataDTO);
                             }
+
+                            // This only adds if it is not already in the questions list in QnAMaker
+                            questions.Add.Add(portalDbRecord.FaqQuestion);
 
                             UpdateQnaDTO updateQnaDTO = new UpdateQnaDTO
                             {
@@ -166,8 +167,6 @@ namespace RPA.KnowledgebaseSync.Activities.Utilities
 
                     qnADTOs.Add(qnADTO);
                 }
-
-                found = false;
             }
         }
 
