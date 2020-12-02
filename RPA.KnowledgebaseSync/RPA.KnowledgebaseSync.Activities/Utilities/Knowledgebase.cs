@@ -1,5 +1,6 @@
 ﻿using KnowledgebaseSync.Models;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -8,117 +9,104 @@ namespace RPA.KnowledgebaseSync.Activities.Utilities
 {
     public static class KnowledgebaseUtility
     {
-        public static string CreateKnowledgebaseUpdate(DataTable portal, string knowledgebase, string knowledgebaseName)
+        public static string CreateKnowledgebaseUpdate(
+          DataTable portal,
+          string knowledgebase,
+          string knowledgebaseName)
         {
-            var portalJSON = Newtonsoft.Json.JsonConvert.SerializeObject(portal);
-            IEnumerable<PortalDbRecordDTO> portalDbRecords = JsonConvert.DeserializeObject<IEnumerable<PortalDbRecordDTO>>(portalJSON);
-            QnADocumentsDTO qnaDocumentsDTO = JsonConvert.DeserializeObject<QnADocumentsDTO>(knowledgebase);
-
-            FileDTO fileDTO = new FileDTO
+            IEnumerable<PortalDbRecordDTO> portalDbRecords = (IEnumerable<PortalDbRecordDTO>)JsonConvert.DeserializeObject<IEnumerable<PortalDbRecordDTO>>(JsonConvert.SerializeObject((object)portal));
+            QnADocumentsDTO qnaDocumentsDTO = (QnADocumentsDTO)JsonConvert.DeserializeObject<QnADocumentsDTO>(knowledgebase);
+            new List<FileDTO>()
             {
-                FileName = null,
-                FileUri = null
+            new FileDTO()
+            {
+                FileName = (string) null,
+                FileUri = (string) null
+            }
             };
-
-            List<FileDTO> fileDTOs = new List<FileDTO>
+            List<MetadataDTO> metadataDtoList = new List<MetadataDTO>();
+            KnowledgebaseUtility.LoadMetadata(qnaDocumentsDTO.QnaDTO, metadataDtoList);
+            List<QnADTO> qnADTOs = new List<QnADTO>();
+            KnowledgebaseUtility.LoadAddQnADTOs(portalDbRecords, qnaDocumentsDTO, qnADTOs);
+            List<UpdateQnaDTO> updateQnADTOs = new List<UpdateQnaDTO>();
+            KnowledgebaseUtility.LoadUpdateQnADTOs(portalDbRecords, qnaDocumentsDTO, updateQnADTOs);
+            IEnumerable<MetadataDTO> metadataDtos = metadataDtoList.Where<MetadataDTO>((Func<MetadataDTO, bool>)(m => m.Name == "faqid")).Where<MetadataDTO>((Func<MetadataDTO, bool>)(m => !portalDbRecords.Any<PortalDbRecordDTO>((Func<PortalDbRecordDTO, bool>)(p => p.FaqId.ToString() == m.Value))));
+            List<int> intList = new List<int>();
+            foreach (MetadataDTO metadataDto in metadataDtos)
             {
-                fileDTO
-            };
-
-            List<MetadataDTO> metadataDTOs = new List<MetadataDTO>();
-            LoadMetadata(qnaDocumentsDTO.QnaDTO, metadataDTOs);
-
-            List<QnADTO> addQnADTOs = new List<QnADTO>();
-            LoadAddQnADTOs(portalDbRecords, qnaDocumentsDTO, addQnADTOs);
-
-            List<UpdateQnaDTO> updateQnaDTOs = new List<UpdateQnaDTO>();
-            LoadUpdateQnADTOs(portalDbRecords, qnaDocumentsDTO, updateQnaDTOs);
-
-            var metadatafaqIds = metadataDTOs.Where(m => m.Name == "faqid");
-            var deletes = metadatafaqIds.Where(m => !portalDbRecords.Any(p => p.FaqId.ToString() == m.Value));
-
-            Add add = new Add
+                foreach (QnADTO qnAdto in qnaDocumentsDTO.QnaDTO)
+                {
+                    IEnumerable<string> source = qnAdto.Metadata.Where<MetadataDTO>((Func<MetadataDTO, bool>)(m => m.Name.ToLower() == "faqid")).Select<MetadataDTO, string>((Func<MetadataDTO, string>)(m => m.Value));
+                    if (source.FirstOrDefault<string>() != null && source.FirstOrDefault<string>() == metadataDto.Value)
+                        intList.Add(qnAdto.Id);
+                }
+            }
+            Add add = new Add()
             {
-                Files = null,
-                QnaList = addQnADTOs,
+                Files = (List<FileDTO>)null,
+                QnaList = qnADTOs,
                 Urls = new List<string>()
             };
-
-            Update update = new Update
+            Update update = new Update()
             {
                 Name = knowledgebaseName,
-                QnaList = updateQnaDTOs,
+                QnaList = updateQnADTOs,
                 Urls = new List<string>()
             };
-
-            Delete delete = new Delete
+            Delete delete = new Delete()
             {
-                Ids = deletes.Select(d => int.Parse(d.Value)).ToList(),
+                Ids = intList,
                 Sources = new List<string>()
             };
-
-            UpdateKbOperationDTO updateKbOperationDTO = new UpdateKbOperationDTO
+            return JsonConvert.SerializeObject((object)new UpdateKbOperationDTO()
             {
                 Add = add,
                 DefaultAnswerUsedForExtraction = "",
                 Delete = delete,
                 EnableHierarchicalExtraction = false,
                 Update = update
-            };
-
-            string JsonObjectUpdateKbOperationDTO = JsonConvert.SerializeObject(updateKbOperationDTO);
-            return JsonObjectUpdateKbOperationDTO;
+            });
         }
 
         private static void LoadUpdateQnADTOs(
-            IEnumerable<PortalDbRecordDTO> portalDbRecords,
-            QnADocumentsDTO qnaDocumentsDTO,
-            List<UpdateQnaDTO> updateQnADTOs)
+          IEnumerable<PortalDbRecordDTO> portalDbRecords,
+          QnADocumentsDTO qnaDocumentsDTO,
+          List<UpdateQnaDTO> updateQnADTOs)
         {
-            foreach (var portalDbRecord in portalDbRecords)
+            foreach (PortalDbRecordDTO portalDbRecord in portalDbRecords)
             {
                 Questions questions = new Questions();
                 questions.Add = new List<string>();
                 Metadata metadata = new Metadata();
                 metadata.Add = new List<MetadataDTO>();
-
-                foreach (var qnaDTO in qnaDocumentsDTO.QnaDTO)
+                foreach (QnADTO qnAdto in qnaDocumentsDTO.QnaDTO)
                 {
-                    var metadataFaqId = from m in qnaDTO.Metadata
-                                        where m.Name == "faqid"
-                                        select m.Value;
-
-                    if (metadataFaqId.FirstOrDefault() != null)
+                    IEnumerable<string> source = qnAdto.Metadata.Where<MetadataDTO>((Func<MetadataDTO, bool>)(m => m.Name.ToLower() == "faqid")).Select<MetadataDTO, string>((Func<MetadataDTO, string>)(m => m.Value));
+                    if (source.FirstOrDefault<string>() != null)
                     {
-                        string faqid = metadataFaqId.FirstOrDefault().ToString();
-
-                        if (portalDbRecord.FaqId.ToString() == faqid)
+                        string str = source.FirstOrDefault<string>().ToString();
+                        if (portalDbRecord.FaqId.ToString() == str)
                         {
-                            foreach (var item in qnaDTO.Metadata)
-                            {
-                                MetadataDTO metadataDTO = new MetadataDTO
-                                {
-                                    Name = item.Name,
-                                    Value = item.Value
-                                };
-
-                                metadata.Add.Add(metadataDTO);
-                            }
-
-                            // This only adds if it is not already in the questions list in QnAMaker
                             questions.Add.Add(portalDbRecord.FaqQuestion);
-
-                            UpdateQnaDTO updateQnaDTO = new UpdateQnaDTO
+                            foreach (MetadataDTO metadataDto1 in qnAdto.Metadata)
+                            {
+                                MetadataDTO metadataDto2 = new MetadataDTO()
+                                {
+                                    Name = metadataDto1.Name,
+                                    Value = metadataDto1.Value
+                                };
+                                metadata.Add.Add(metadataDto2);
+                            }
+                            UpdateQnaDTO updateQnaDto = new UpdateQnaDTO()
                             {
                                 Answer = portalDbRecord.FaqAnswer,
-                                Context = qnaDTO.Context,
-                                Id = qnaDTO.Id,
+                                Context = qnAdto.Context,
+                                Id = qnAdto.Id,
                                 Metadata = metadata,
                                 Questions = questions,
-                                Source = qnaDTO.Source
+                                Source = qnAdto.Source
                             };
-
-                            updateQnADTOs.Add(updateQnaDTO);
+                            updateQnADTOs.Add(updateQnaDto);
                         }
                     }
                 }
@@ -126,69 +114,85 @@ namespace RPA.KnowledgebaseSync.Activities.Utilities
         }
 
         private static void LoadAddQnADTOs(
-            IEnumerable<PortalDbRecordDTO> portalDbRecords,
-            QnADocumentsDTO qnaDocumentsDTO,
-            List<QnADTO> qnADTOs)
+          IEnumerable<PortalDbRecordDTO> portalDbRecords,
+          QnADocumentsDTO qnaDocumentsDTO,
+          List<QnADTO> qnADTOs)
         {
-            foreach (var portalDbRecord in portalDbRecords)
+            foreach (PortalDbRecordDTO portalDbRecord in portalDbRecords)
             {
-                bool found = false;
-                string faqId = "";
-                List<string> questions = new List<string>();
-
-                foreach (var qnaDTO in qnaDocumentsDTO.QnaDTO)
+                bool flag = false;
+                string str = "";
+                List<string> source = new List<string>();
+                foreach (QnADTO qnAdto in qnaDocumentsDTO.QnaDTO)
                 {
-                    foreach (var metadataItem in qnaDTO.Metadata)
+                    foreach (MetadataDTO metadataDto in qnAdto.Metadata)
                     {
-                        if (metadataItem.Name == "faqid")
-                        {
-                            faqId = metadataItem.Value;
-                        }
+                        if (metadataDto.Name == "faqid")
+                            str = metadataDto.Value;
                     }
-
-                    if (faqId == portalDbRecord.FaqId.ToString())
-                    {
-                        found = true;
-                    }
+                    if (str == portalDbRecord.FaqId.ToString())
+                        flag = true;
                 }
-
-                if (!found)
+                if (!flag)
                 {
-                    questions.Add(portalDbRecord.FaqQuestion);
-                    QnADTO qnADTO = new QnADTO
+                    List<MetadataDTO> metadataDtoList = new List<MetadataDTO>();
+                    metadataDtoList.Add(new MetadataDTO()
+                    {
+                        Name = "faqcategoryid",
+                        Value = portalDbRecord.FaqCategoryFaqId.ToString()
+                    });
+                    MetadataDTO metadataDto1 = new MetadataDTO();
+                    metadataDto1.Name = "sortOrder";
+                    int num = portalDbRecord.FaqSortOrder;
+                    metadataDto1.Value = num.ToString();
+                    MetadataDTO metadataDto2 = metadataDto1;
+                    metadataDtoList.Add(metadataDto2);
+                    MetadataDTO metadataDto3 = new MetadataDTO();
+                    metadataDto3.Name = "faqid";
+                    num = portalDbRecord.FaqId;
+                    metadataDto3.Value = num.ToString();
+                    MetadataDTO metadataDto4 = metadataDto3;
+                    metadataDtoList.Add(metadataDto4);
+                    MetadataDTO metadataDto5 = new MetadataDTO();
+                    metadataDto5.Name = "portalid";
+                    num = portalDbRecord.PortalId;
+                    metadataDto5.Value = num.ToString();
+                    MetadataDTO metadataDto6 = metadataDto5;
+                    metadataDtoList.Add(metadataDto6);
+                    MetadataDTO metadataDto7 = new MetadataDTO()
+                    {
+                        Name = "iscommonlyasked",
+                        Value = portalDbRecord.IsCommonlyAsked.ToString()
+                    };
+                    metadataDtoList.Add(metadataDto7);
+                    source.Add(portalDbRecord.FaqQuestion);
+                    QnADTO qnAdto = new QnADTO()
                     {
                         Answer = portalDbRecord.FaqAnswer,
-                        Context = null,
-                        Id = portalDbRecord.FaqId,
-                        Metadata = null,
-                        Questions = questions.ToList(),
-                        Source = null
+                        Metadata = metadataDtoList,
+                        Questions = source.ToList<string>(),
+                        Source = "FAQ"
                     };
-
-                    qnADTOs.Add(qnADTO);
+                    qnADTOs.Add(qnAdto);
                 }
             }
         }
 
         private static void LoadMetadata(List<QnADTO> qnADTOs, List<MetadataDTO> metadataDTOs)
         {
-            var metadataArray = qnADTOs.ToArray();
-
-            foreach (var metadata in metadataArray)
+            foreach (QnADTO qnAdto in qnADTOs.ToArray())
             {
-                var metadataFields = metadata.Metadata.ToArray();
-
-                for (int i = 0; i < metadataFields.Length; i++)
+                MetadataDTO[] array = qnAdto.Metadata.ToArray();
+                for (int index = 0; index < array.Length; ++index)
                 {
-                    MetadataDTO metadataRecord = new MetadataDTO
+                    MetadataDTO metadataDto = new MetadataDTO()
                     {
-                        Name = metadataFields[i].Name,
-                        Value = metadataFields[i].Value
+                        Name = array[index].Name,
+                        Value = array[index].Value
                     };
-
-                    metadataDTOs.Add(metadataRecord);
-                };
-            };
+                    metadataDTOs.Add(metadataDto);
+                }
+            }
         }
-    };
+    }
 }
