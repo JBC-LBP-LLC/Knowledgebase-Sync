@@ -88,7 +88,8 @@ namespace RPA.KnowledgebaseSync.Activities.Utilities
                 questions.Add = new List<string>();
                 Metadata metadata = new Metadata();
                 metadata.Add = new List<MetadataDTO>();
-                
+                metadata.Delete = new List<MetadataDTO>();
+
                 foreach (QnADTO qnAdto in qnaDocumentsDTO.QnaDTO)
                 {
                     IEnumerable<string> source = qnAdto.Metadata.Where<MetadataDTO>((Func<MetadataDTO, bool>)(m => m.Name.ToLower() == "faqid")).Select<MetadataDTO, string>((Func<MetadataDTO, string>)(m => m.Value));
@@ -108,9 +109,16 @@ namespace RPA.KnowledgebaseSync.Activities.Utilities
                                     Name = metadataDto1.Name,
                                     Value = metadataDto1.Value
                                 };
-                                metadata.Add.Add(metadataDto2);
+                                metadata.Delete.Add(metadataDto2);
                             }
-                            
+
+                            List<MetadataDTO> metadataDtoList = LoadMetadata(portalDbRecord);
+
+                            foreach (var metadataDto in metadataDtoList)
+                            {
+                                metadata.Add.Add(metadataDto);
+                            }
+
                             UpdateQnaDTO updateQnaDto = new UpdateQnaDTO()
                             {
                                 Answer = portalDbRecord.FaqAnswer,
@@ -153,82 +161,10 @@ namespace RPA.KnowledgebaseSync.Activities.Utilities
 
                 if (!flag)
                 {
-                    List<MetadataDTO> metadataDtoList = new List<MetadataDTO>();
-
-                    metadataDtoList.Add(new MetadataDTO()
-                    {
-                        Name = "faqcategoryfaqid",
-                        Value = portalDbRecord.FaqCategoryFaqId.ToString()
-                    });
-
-                    metadataDtoList.Add(new MetadataDTO()
-                    {
-                        Name = "faqid",
-                        Value = portalDbRecord.FaqId.ToString()
-                    });
-
-                    metadataDtoList.Add(new MetadataDTO
-                    {
-                        Name = "faqsortorder",
-                        Value = portalDbRecord.FaqSortOrder.ToString()
-                    });
-
-                    metadataDtoList.Add(new MetadataDTO()
-                    {
-                        Name = "faqcategoryid",
-                        Value = portalDbRecord.FaqCategoryId.ToString()
-                    });
-
-                    metadataDtoList.Add(new MetadataDTO()
-                    {
-                        Name = "categorytitle",
-                        Value = portalDbRecord.CategoryTitle
-                    });
-
-                    metadataDtoList.Add(new MetadataDTO()
-                    {
-                        Name = "categorydescription",
-                        Value = portalDbRecord.CategoryDescription
-                    });
-
-                    metadataDtoList.Add(new MetadataDTO()
-                    {
-                        Name = "categorysortorder",
-                        Value = portalDbRecord.CategorySortOrder.ToString()
-                    });
-
-                    metadataDtoList.Add(new MetadataDTO()
-                    {
-                        Name = "roleids",
-                        Value = portalDbRecord.RoleIds
-                    });
-
-                    metadataDtoList.Add(new MetadataDTO()
-                    {
-                        Name = "denyroleids",
-                        Value = portalDbRecord.DenyRoleIds
-                    });
-
-                    metadataDtoList.Add(new MetadataDTO()
-                    {
-                        Name = "iscommonlyasked",
-                        Value = portalDbRecord.IsCommonlyAsked.ToString()
-                    });
-
-                    metadataDtoList.Add(new MetadataDTO()
-                    {
-                        Name = "contentgroupids",
-                        Value = portalDbRecord.ContentGroupIds
-                    });
-
-                    metadataDtoList.Add(new MetadataDTO()
-                    {
-                        Name = "portalid",
-                        Value = portalDbRecord.PortalId.ToString()
-                    });
+                    List<MetadataDTO> metadataDtoList = LoadMetadata(portalDbRecord);
 
                     source.Add(portalDbRecord.FaqQuestion);
-                    
+
                     QnADTO qnAdto = new QnADTO()
                     {
                         Answer = portalDbRecord.FaqAnswer,
@@ -236,10 +172,125 @@ namespace RPA.KnowledgebaseSync.Activities.Utilities
                         Questions = source.ToList<string>(),
                         Source = "FAQ"
                     };
-                    
+
                     qnADTOs.Add(qnAdto);
                 }
             }
+        }
+
+        private static List<MetadataDTO> LoadMetadata(PortalDbRecordDTO portalDbRecord)
+        {
+            List<MetadataDTO> metadataDtoList = new List<MetadataDTO>();
+
+            if (portalDbRecord.FaqCategoryFaqId.ToString() != string.Empty)
+            {
+                metadataDtoList.Add(new MetadataDTO()
+                {
+                    Name = "faqcategoryfaqid",
+                    Value = portalDbRecord.FaqCategoryFaqId.ToString()
+                });
+            }
+
+            if (portalDbRecord.FaqId.ToString() != string.Empty)
+            {
+                metadataDtoList.Add(new MetadataDTO()
+                {
+                    Name = "faqid",
+                    Value = portalDbRecord.FaqId.ToString()
+                });
+            }
+
+            if (portalDbRecord.FaqSortOrder.ToString() != string.Empty)
+            {
+                metadataDtoList.Add(new MetadataDTO
+                {
+                    Name = "faqsortorder",
+                    Value = portalDbRecord.FaqSortOrder.ToString()
+                });
+            }
+
+            if (portalDbRecord.FaqCategoryId.ToString() != string.Empty)
+            {
+                metadataDtoList.Add(new MetadataDTO()
+                {
+                    Name = "faqcategoryid",
+                    Value = portalDbRecord.FaqCategoryId.ToString()
+                });
+            }
+
+            if (portalDbRecord.CategoryTitle != string.Empty)
+            {
+                metadataDtoList.Add(new MetadataDTO()
+                {
+                    Name = "categorytitle",
+                    Value = portalDbRecord.CategoryTitle
+                });
+            }
+
+            if (portalDbRecord.CategoryDescription != string.Empty)
+            {
+                metadataDtoList.Add(new MetadataDTO()
+                {
+                    Name = "categorydescription",
+                    Value = portalDbRecord.CategoryDescription
+                });
+            }
+
+            if (portalDbRecord.CategorySortOrder.ToString() != string.Empty)
+            {
+                metadataDtoList.Add(new MetadataDTO()
+                {
+                    Name = "categorysortorder",
+                    Value = portalDbRecord.CategorySortOrder.ToString()
+                });
+            }
+
+            if (portalDbRecord.RoleIds != string.Empty)
+            {
+                metadataDtoList.Add(new MetadataDTO()
+                {
+                    Name = "roleids",
+                    Value = portalDbRecord.RoleIds
+                });
+            }
+
+            if (portalDbRecord.DenyRoleIds != string.Empty)
+            {
+                metadataDtoList.Add(new MetadataDTO()
+                {
+                    Name = "denyroleids",
+                    Value = portalDbRecord.DenyRoleIds
+                });
+            }
+
+            if (portalDbRecord.IsCommonlyAsked.ToString() != string.Empty)
+            {
+                metadataDtoList.Add(new MetadataDTO()
+                {
+                    Name = "iscommonlyasked",
+                    Value = portalDbRecord.IsCommonlyAsked.ToString()
+                });
+            }
+
+            if (portalDbRecord.ContentGroupIds != string.Empty)
+            {
+                metadataDtoList.Add(new MetadataDTO()
+                {
+                    Name = "contentgroupids",
+                    Value = portalDbRecord.ContentGroupIds
+                });
+            }
+
+            if (portalDbRecord.PortalId.ToString() != string.Empty)
+            {
+                metadataDtoList.Add(new MetadataDTO()
+                {
+                    Name = "portalid",
+                    Value = portalDbRecord.PortalId.ToString()
+                });
+            }
+
+            return metadataDtoList;
         }
 
         private static void LoadMetadata(List<QnADTO> qnADTOs, List<MetadataDTO> metadataDTOs)
