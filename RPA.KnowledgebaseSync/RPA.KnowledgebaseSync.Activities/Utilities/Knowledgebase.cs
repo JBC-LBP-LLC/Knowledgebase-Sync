@@ -223,7 +223,7 @@ namespace RPA.KnowledgebaseSync.Activities.Utilities
                 metadataDtoList.Add(new MetadataDTO()
                 {
                     Name = "categorytitle",
-                    Value = portalDbRecord.CategoryTitle
+                    Value = portalDbRecord.CategoryTitle.Replace(":", "").Replace("|", "")
                 });
             }
 
@@ -232,7 +232,7 @@ namespace RPA.KnowledgebaseSync.Activities.Utilities
                 metadataDtoList.Add(new MetadataDTO()
                 {
                     Name = "categorydescription",
-                    Value = portalDbRecord.CategoryDescription
+                    Value = portalDbRecord.CategoryDescription.Replace(":", "").Replace("|", "")
                 });
             }
 
@@ -250,7 +250,7 @@ namespace RPA.KnowledgebaseSync.Activities.Utilities
                 metadataDtoList.Add(new MetadataDTO()
                 {
                     Name = "roleids",
-                    Value = portalDbRecord.RoleIds
+                    Value = portalDbRecord.RoleIds.Replace(":", "").Replace("|", "")
                 });
             }
 
@@ -259,7 +259,7 @@ namespace RPA.KnowledgebaseSync.Activities.Utilities
                 metadataDtoList.Add(new MetadataDTO()
                 {
                     Name = "denyroleids",
-                    Value = portalDbRecord.DenyRoleIds
+                    Value = portalDbRecord.DenyRoleIds.Replace(":", "").Replace("|", "")
                 });
             }
 
@@ -277,7 +277,7 @@ namespace RPA.KnowledgebaseSync.Activities.Utilities
                 metadataDtoList.Add(new MetadataDTO()
                 {
                     Name = "contentgroupids",
-                    Value = portalDbRecord.ContentGroupIds
+                    Value = portalDbRecord.ContentGroupIds.Replace(":", "").Replace("|", "")
                 });
             }
 
