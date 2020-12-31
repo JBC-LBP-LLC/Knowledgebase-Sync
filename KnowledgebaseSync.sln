@@ -19,11 +19,21 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "UiPath.Shared.Activities.De
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KbSyncDebugUtility", "KbSyncDebugUtility\KbSyncDebugUtility.csproj", "{84447818-19DD-40EF-BDFD-9D369A1CFF3D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RPA.KnowledgebaseCreate", "RPA.KnowledgebaseCreate", "{215BC9ED-B312-425F-BA92-BC7230438C04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPA.KnowledgebaseCreate", "RPA.KnowledgebaseCreate\RPA.KnowledgebaseCreate\RPA.KnowledgebaseCreate.csproj", "{8001816D-A527-4D26-A2A2-A8E3F4E6A8A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPA.KnowledgebaseCreate.Activities", "RPA.KnowledgebaseCreate\RPA.KnowledgebaseCreate.Activities\RPA.KnowledgebaseCreate.Activities.csproj", "{05642E2C-5DF1-4008-BA68-39B56986442D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPA.KnowledgebaseCreate.Activities.Design", "RPA.KnowledgebaseCreate\RPA.KnowledgebaseCreate.Activities.Design\RPA.KnowledgebaseCreate.Activities.Design.csproj", "{7758308E-64B6-4FBE-AA86-D6948E4D54D9}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Shared\UiPath.Shared.Activities\UiPath.Shared.Activities.projitems*{05642e2c-5df1-4008-ba68-39b56986442d}*SharedItemsImports = 5
 		Shared\UiPath.Shared.Activities.Design\UiPath.Shared.Activities.Design.projitems*{38e9009c-56f0-4627-88be-1a274f02742c}*SharedItemsImports = 5
 		Shared\UiPath.Shared.Activities\UiPath.Shared.Activities.projitems*{4546856d-ea50-45c6-9419-eeeacb5a80aa}*SharedItemsImports = 13
 		Shared\UiPath.Shared.Activities\UiPath.Shared.Activities.projitems*{6f0addf1-3e6b-4b35-bd53-643fb9b3b809}*SharedItemsImports = 5
+		Shared\UiPath.Shared.Activities.Design\UiPath.Shared.Activities.Design.projitems*{7758308e-64b6-4fbe-aa86-d6948e4d54d9}*SharedItemsImports = 5
 		Shared\UiPath.Shared.Activities.Design\UiPath.Shared.Activities.Design.projitems*{df9c43f0-add3-4fbf-995e-84b92f9cbf25}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +57,18 @@ Global
 		{84447818-19DD-40EF-BDFD-9D369A1CFF3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84447818-19DD-40EF-BDFD-9D369A1CFF3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84447818-19DD-40EF-BDFD-9D369A1CFF3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8001816D-A527-4D26-A2A2-A8E3F4E6A8A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8001816D-A527-4D26-A2A2-A8E3F4E6A8A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8001816D-A527-4D26-A2A2-A8E3F4E6A8A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8001816D-A527-4D26-A2A2-A8E3F4E6A8A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05642E2C-5DF1-4008-BA68-39B56986442D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05642E2C-5DF1-4008-BA68-39B56986442D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05642E2C-5DF1-4008-BA68-39B56986442D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05642E2C-5DF1-4008-BA68-39B56986442D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7758308E-64B6-4FBE-AA86-D6948E4D54D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7758308E-64B6-4FBE-AA86-D6948E4D54D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7758308E-64B6-4FBE-AA86-D6948E4D54D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7758308E-64B6-4FBE-AA86-D6948E4D54D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,6 +79,9 @@ Global
 		{38E9009C-56F0-4627-88BE-1A274F02742C} = {358C5DD8-A402-45A5-A2DF-33B9D76A562D}
 		{4546856D-EA50-45C6-9419-EEEACB5A80AA} = {A6009EA5-630F-4A21-B311-21D9C7C30EEA}
 		{DF9C43F0-ADD3-4FBF-995E-84B92F9CBF25} = {A6009EA5-630F-4A21-B311-21D9C7C30EEA}
+		{8001816D-A527-4D26-A2A2-A8E3F4E6A8A2} = {215BC9ED-B312-425F-BA92-BC7230438C04}
+		{05642E2C-5DF1-4008-BA68-39B56986442D} = {215BC9ED-B312-425F-BA92-BC7230438C04}
+		{7758308E-64B6-4FBE-AA86-D6948E4D54D9} = {215BC9ED-B312-425F-BA92-BC7230438C04}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {64658527-76FD-4AC9-BDF3-BFE7E522C9F1}
